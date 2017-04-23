@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="10dp"
+    android:layout_margin="8dp"
     tools:context="com.example.forever.weather.ForecastFragment">
 
 
@@ -60,7 +60,7 @@
                     android:textSize="17sp"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:text="Day"
+                    android:text="Noon"
                     android:gravity="center"/>
                 <ImageView
                     android:layout_weight="1"
@@ -155,14 +155,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="Date"/>
-        <TextView
-            android:layout_weight="1"
-            android:textColor="#1f1681"
-            android:textSize="17sp"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:text="Status"
-            />
+
 
         <TextView
             android:gravity="center"
@@ -180,6 +173,16 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="Min"/>
+        <TextView
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="#1f1681"
+            android:textSize="17sp"
+            android:layout_marginRight="8dp"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:text="Status"
+            />
     </LinearLayout>
     <ListView
         android:layout_width="match_parent"

@@ -17,14 +17,14 @@ import java.util.ArrayList;
  * Created by Forever on 4/20/2017.
  */
 
-public class AdapterLv extends ArrayAdapter<WeatherModel> {
+public class AdapterListView extends ArrayAdapter<WeatherModel> {
 
     private Context context;
     private ArrayList<WeatherModel> weatherForecast;
     private boolean isFormatCelsius;
     private WeatherIconSelector iconSelector = new WeatherIconSelector();
 
-    public AdapterLv(@NonNull Context context, @NonNull ArrayList<WeatherModel> objects, boolean isFormatCelsius) {
+    public AdapterListView(@NonNull Context context, @NonNull ArrayList<WeatherModel> objects, boolean isFormatCelsius) {
         super(context, R.layout.forecast_layout, objects);
         this.context = context;
         this.weatherForecast = objects;

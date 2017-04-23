@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public void onLocationChanged(android.location.Location location) {
 
        // locationset.clearLocation();
-        Toast.makeText(this, "changed", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "changed", Toast.LENGTH_SHORT).show();
 
 
         currentLat =  String.valueOf(location.getLatitude());
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             addresslist = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
 
             String city = addresslist.get(0).getLocality();
-            Toast.makeText(this, ""+city, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, ""+city, Toast.LENGTH_SHORT).show();
             //locationset.addCity(city);
             locationset.addLocation(currentLat,currentLng,city);
             //locationset.addLongitude(currentLng);

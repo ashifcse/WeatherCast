@@ -32,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ForecastFragment extends Fragment {
 
     private String TAG = "WeatherApp";
-    private WeatherApi weatherApi;
+    private WeatherForecastApi weatherForecastApi;
     private WeatherIconSelector iconSelector = new WeatherIconSelector();
 
 
@@ -40,12 +40,13 @@ public class ForecastFragment extends Fragment {
     private TextView morningTempTv,dayTempTv,eveningTempTv,nightTempTv;
     private ImageView morningIconIv,dayIconIv,eveningIconIv,nightIconIv;
     private View inflatedView;
+    private String currentCity;
     private ListView forecastWeatherLv;
     private WeatherForecastModelClass weatherForecastData;
     private ArrayList<WeatherModel> weatherData;
     private boolean temperatureFormatCelsius = true;
-    private String Url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Dhaka&appid=a226ec225f23ea5717f7fa94ce785237";
-    private String baseUrl="http://api.openweathermap.org/";
+    private String Url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Dhaka&appid=8e401c96e74d2f0c07da113eb27d51d0";
+    private String BASE_URL="http://api.openweathermap.org/";
     public ForecastFragment() {
         // Required empty public constructor
     }
@@ -87,14 +88,18 @@ public class ForecastFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        weatherApi = retrofit.create(WeatherApi.class);
+        weatherForecastApi = retrofit.create(WeatherForecastApi.class);
 
+        Location location = new Location(getActivity());
+        currentCity = location.getCity();
 
-        Call<WeatherForecastModelClass> getWeatherData = weatherApi.getWeatherData();
+        String dynamicUrl = BASE_URL+"data/2.5/forecast/daily?q="+currentCity+"&appid=8e401c96e74d2f0c07da113eb27d51d0";
+
+        Call<WeatherForecastModelClass> getWeatherData = weatherForecastApi.getWeatherData(dynamicUrl);
         getWeatherData.enqueue(new Callback<WeatherForecastModelClass>() {
             @Override
             public void onResponse(Call<WeatherForecastModelClass> call, Response<WeatherForecastModelClass> response) {
@@ -142,7 +147,7 @@ public class ForecastFragment extends Fragment {
     //update weather forecast ListView
     public void updateListView(){
         if (weatherData.size() > 0 ){
-            AdapterLv adapter = new AdapterLv(context,weatherData,temperatureFormatCelsius);
+            AdapterListView adapter = new AdapterListView(context,weatherData,temperatureFormatCelsius);
             forecastWeatherLv.setAdapter(adapter);
             updateDayWeather(0);
         }
