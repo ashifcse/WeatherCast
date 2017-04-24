@@ -26,6 +26,8 @@ public class ViewPageAdapter extends FragmentPagerAdapter {
             switch (position){
                 case 0:
                     CurrentWeatherFragment currentWeatherFragment =new CurrentWeatherFragment();
+ //                   currentWeatherFragment.getFragmentManager().beginTransaction().detach(currentWeatherFragment).commit();
+//                    currentWeatherFragment.getFragmentManager().beginTransaction().attach(currentWeatherFragment).commit();
                     return currentWeatherFragment;
                     //break;
                 case 1:

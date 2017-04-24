@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private String currentLat = null, currentLng = null;
     private List<Address> addresslist;
     private Location locationset;
-    public String apiurl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
