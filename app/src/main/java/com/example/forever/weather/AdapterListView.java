@@ -1,12 +1,16 @@
 package com.example.forever.weather;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +24,7 @@ import java.util.ArrayList;
 public class AdapterListView extends ArrayAdapter<WeatherModel> {
 
     private Context context;
+    private ArrayList <WeatherForecastModelClass> weatherForecastModelClasses;
     private ArrayList<WeatherModel> weatherForecast;
     private boolean isFormatCelsius;
     private WeatherIconSelector iconSelector = new WeatherIconSelector();
@@ -38,9 +43,9 @@ public class AdapterListView extends ArrayAdapter<WeatherModel> {
     }
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        ViewHolder holder;
+        final ViewHolder holder;
         if (convertView ==null){
             holder = new ViewHolder();
 
@@ -67,6 +72,85 @@ public class AdapterListView extends ArrayAdapter<WeatherModel> {
             holder.tempHighTv.setText(getFahrenheit(weatherForecast.get(position).getHighTemp()));
             holder.tempLowTv.setText(getFahrenheit(weatherForecast.get(position).getLowTemp()));
         }
+
+        holder.weatherIcon.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                String dayTemp = holder.dayTv.getText().toString();
+                String highTemp = holder.tempHighTv.getText().toString();
+                String lowTemp = holder.tempLowTv.getText().toString();
+                //     String description = weatherForecastModelClasses.get(position).getList().get(position).getWeather().get(position).getDescription();
+                holder.weatherIcon.buildDrawingCache();
+                Bitmap icon= holder.weatherIcon.getDrawingCache();
+
+                final Dialog dialog = new Dialog(getContext());
+
+                dialog.setContentView(R.layout.details_popup);
+                dialog.setTitle(" Weather Forecasting Details ");
+
+                ImageView iconSet = (ImageView) dialog.findViewById(R.id.showIcon);
+                // TextView descrip         = (TextView) dialog.findViewById(R.id.showDescp);
+                TextView temperature         = (TextView) dialog.findViewById(R.id.showTemp);
+                TextView maxTemp         = (TextView) dialog.findViewById(R.id.showMax);
+                TextView minTemp         = (TextView) dialog.findViewById(R.id.showMin);
+                Button btnBack       = (Button) dialog.findViewById(R.id.cancel);
+
+                iconSet.setImageBitmap(icon);
+                // descrip.setText(description);
+                temperature.setText(dayTemp);
+                maxTemp.setText(highTemp);
+                minTemp.setText(lowTemp);
+                btnBack.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                //dialog.setCanceledOnTouchOutside(true);
+
+                dialog.show();
+
+                return false;
+            }
+
+        /*    @Override
+            public void onClick(View v) {
+                String dayTemp = holder.dayTv.getText().toString();
+                String highTemp = holder.tempHighTv.getText().toString();
+                String lowTemp = holder.tempLowTv.getText().toString();
+           //     String description = weatherForecastModelClasses.get(position).getList().get(position).getWeather().get(position).getDescription();
+                holder.weatherIcon.buildDrawingCache();
+                Bitmap icon= holder.weatherIcon.getDrawingCache();
+
+                final Dialog dialog = new Dialog(getContext());
+
+                dialog.setContentView(R.layout.details_popup);
+                dialog.setTitle(" Weather Forecasting Details ");
+
+                ImageView iconSet = (ImageView) dialog.findViewById(R.id.showIcon);
+               // TextView descrip         = (TextView) dialog.findViewById(R.id.showDescp);
+                TextView temperature         = (TextView) dialog.findViewById(R.id.showTemp);
+                TextView maxTemp         = (TextView) dialog.findViewById(R.id.showMax);
+                TextView minTemp         = (TextView) dialog.findViewById(R.id.showMin);
+                Button btnBack       = (Button) dialog.findViewById(R.id.cancel);
+
+                iconSet.setImageBitmap(icon);
+               // descrip.setText(description);
+                temperature.setText(dayTemp);
+                maxTemp.setText(highTemp);
+                minTemp.setText(lowTemp);
+                btnBack.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                //dialog.setCanceledOnTouchOutside(true);
+
+                dialog.show();
+            }*/
+
+        });
 
         return convertView;
     }
