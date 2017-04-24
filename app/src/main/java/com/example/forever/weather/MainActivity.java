@@ -125,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             locationset.addLocation(currentLat,currentLng,city);
             //locationset.addLongitude(currentLng);
 
-            //apiurl="data/2.5/forecast/daily?q="+locationset.getCity()+"&appid=a226ec225f23ea5717f7fa94ce785237";
 
         } catch (IOException e) {
             e.printStackTrace();

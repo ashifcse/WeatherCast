@@ -98,8 +98,8 @@ public class AdapterListView extends ArrayAdapter<WeatherModel> {
                 iconSet.setImageBitmap(icon);
                 // descrip.setText(description);
                 temperature.setText(dayTemp);
-                maxTemp.setText(highTemp);
-                minTemp.setText(lowTemp);
+                maxTemp.setText(highTemp+"\u2103");
+                minTemp.setText(lowTemp+"\u2103");
                 btnBack.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -157,11 +157,11 @@ public class AdapterListView extends ArrayAdapter<WeatherModel> {
 
     //convert kelvin to fahrenheit
     public String getFahrenheit(String kelvin){
-        return new DecimalFormat("##.##").format(Float.parseFloat(kelvin)-459)+"F";
+        return new DecimalFormat("##.##").format(Float.parseFloat(kelvin)-459);
     }
 
     //convert kelvin to celsius
     public String getCelsius(String kelvin){
-        return new DecimalFormat("##.##").format(Float.parseFloat(kelvin)-273)+"C";
+        return new DecimalFormat("##.##").format(Float.parseFloat(kelvin)-273);
     }
 }

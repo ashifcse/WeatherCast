@@ -17,6 +17,38 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="#7c0935"
+                    android:textSize="17sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="Today"
+                    android:gravity="center"/>
+                <ImageView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:src="@drawable/weather_demo"
+                    android:id="@+id/forecastDayWeatherIcon"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="77"
+                    android:gravity="center"
+                    android:id="@+id/forecastDayWeatherTemp"/>
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_margin="5dp"
                 android:orientation="vertical"
@@ -46,36 +78,6 @@
                     android:text="75"
                     android:gravity="center"
                     android:id="@+id/forecastDayMorningWeatherTemp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_margin="5dp"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:gravity="center">
-                <TextView
-                    android:layout_weight="1"
-                    android:textColor="#7c0935"
-                    android:textSize="17sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:text="Noon"
-                    android:gravity="center"/>
-                <ImageView
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:gravity="center"
-                    android:src="@drawable/weather_demo"
-                    android:id="@+id/forecastDayWeatherIcon"/>
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:text="77"
-                    android:gravity="center"
-                    android:id="@+id/forecastDayWeatherTemp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_margin="5dp"
